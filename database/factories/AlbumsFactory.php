@@ -6,9 +6,9 @@ $factory->define(App\Albums::class, function (Faker $faker) {
 
     return [
         //
-        'albumname' => $faker->sentence,
+        'albumname' => $faker->sentence(),
     'productyear' => $faker->year,
-    'albumcover' => $faker->imageUrl,
+    'albumcover' => $faker->imageUrl(640,480),
     'kind'=> $faker->word
     ];
 });

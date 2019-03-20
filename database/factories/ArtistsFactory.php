@@ -6,6 +6,6 @@ $factory->define(App\Artists::class, function (Faker $faker) {
     return [
         //
         'lastname'=>$faker->lastName,
-        'firstname'=>$faker->firstname
+        'firstname'=>$faker->firstname()
     ];
 });
