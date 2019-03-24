@@ -20,11 +20,11 @@ class CreateAlbumsTable extends Migration
             $table->string('kind');
             $table->string('label');
             $table->integer('rank');
-            $table->unsignedBigInteger('song');
             $table->string('cover');
+            $table->unsignedBigInteger('artist');
             $table->timestamps();
 
-            $table->foreign('song')->references('id')->on('songs');
+            $table->foreign('artist')->references('id')->on('artists');        
         });
     }
 

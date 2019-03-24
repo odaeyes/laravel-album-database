@@ -17,12 +17,7 @@ class CreateArtistsTable extends Migration
             $table->bigIncrements('id');
             $table->string('lastname');
             $table->string('firstname');
-            $table->unsignedBigInteger('song');
-            $table->unsignedBigInteger('album');
             $table->timestamps();
-
-            $table->foreign('album')->references('id')->on('albums');
-            $table->foreign('song')->references('id')->on('songs');
         });
     }
 

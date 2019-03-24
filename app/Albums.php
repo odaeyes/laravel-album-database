@@ -19,8 +19,8 @@ class Albums extends Model
     {
         return $this->hasMany('App\Songs');
     }
-    public function album()
+    public function artist()
     {
-        return $this->belongsTo('App\Albums');
+        return $this->belongsTo('App\Artists');
     }
 }

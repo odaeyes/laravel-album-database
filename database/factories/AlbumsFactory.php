@@ -11,8 +11,8 @@ $factory->define(App\Albums::class, function (Faker $faker) {
         'cover'=>$faker->imageUrl(640,480),
         'label'=>$faker->word,
         'rank'=>$faker->numberBetween(0,10),
-        'song'=>function(){
-        	return factory(App\Songs::class)-create()->id;
+        'artist'=>function(){
+        	return factory(App\Artists::class)->create()->id;
         }
     ];
 });

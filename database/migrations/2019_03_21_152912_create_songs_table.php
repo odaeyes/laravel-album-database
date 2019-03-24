@@ -17,7 +17,12 @@ class CreateSongsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->date('productdate');
+            $table->unsignedBigInteger('album');
+            $table->unsignedBigInteger('artist');
             $table->timestamps();
+
+            $table->foreign('album')->references('id')->on('albums');
+            $table->foreign('artist')->references('id')->on('artists');
         });
     }
 
