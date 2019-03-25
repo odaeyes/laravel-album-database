@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Albums;
+use App\Songs;
+use App\Artists;
 use Illuminate\Http\Request;
 
 class AlbumsController extends Controller
@@ -15,6 +17,8 @@ class AlbumsController extends Controller
     public function index()
     {
         //
+        $albums = Albums::all();
+      return response()->json($albums, 200);
     }
 
     /**
@@ -25,6 +29,7 @@ class AlbumsController extends Controller
     public function create()
     {
         //
+        return view('albums.create');
     }
 
     /**
@@ -36,6 +41,38 @@ class AlbumsController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+        'albumname'=>'required',
+        'productyear'=> 'required',
+        'kind' => 'required',
+        'cover' => 'required',
+        'label' => 'required',
+        'rank' => 'required',
+        'name' => 'required',
+        'productdate' => 'required',
+        'lastname' => 'required',
+        'firstname' => 'required'
+      ]);
+      $album = new Albums([
+        'albumname' => $request->get('albumname'),
+        'productyear'=> $request->get('productyear'),
+        'kind'=> $request->get('kind'),
+        'cover'=> $request->get('cover'),
+        'label'=> $request->get('label'),
+        'rank'=> $request->get('rank')
+      ]);
+      $album->save();
+      $song = new Songs([
+        'name'=> $request->get('name'),
+        'productdate'=> $request->get('productdate')
+      ]);
+      $song->save();
+      $artist = new Artists([
+        'lastname'=> $request->get('lastname'),
+        'firstname'=> $request->get('firstname')
+      ]);
+      $artist->save();
+      return $status ? "OK" : 'Failed';
     }
 
     /**
@@ -47,6 +84,8 @@ class AlbumsController extends Controller
     public function show(Albums $albums)
     {
         //
+        $album = Albums::find($albums);
+        return response()->json($album, 200);
     }
 
     /**
@@ -58,6 +97,9 @@ class AlbumsController extends Controller
     public function edit(Albums $albums)
     {
         //
+        $album = Albums::find($albums);
+        return view('albums.edit', compact('album'));
+        
     }
 
     /**
